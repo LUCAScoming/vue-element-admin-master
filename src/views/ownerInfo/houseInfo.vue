@@ -11,19 +11,21 @@
     <!--</el-select>-->
     <!--</el-form-item>-->
     <el-table v-loading="loading" :data="tableData">
-      <el-table-column prop="signName" label="编号" width="120"/>
-      <el-table-column prop="realName" label="姓名" width="120"/>
-      <el-table-column prop="sex" label="性别" width="120"/>
-      <el-table-column prop="tel" label="联系方式" width="120"/>
-      <el-table-column prop="floor" label="楼层单元" width="120"/>
-      <el-table-column prop="room" label="房间号" width="120"/>
-      <el-table-column prop="date" label="购房日期" width="120"/>
-      <el-table-column prop="area" label="房屋面积" width="120"/>
-      <el-table-column prop="type" label="房型" width="120"/>
-      <el-table-column prop="property" label="房屋属性" width="120"/>
-      <el-table-column label="操作" width="">
+      <el-table-column prop="signName" label="编号" />
+      <el-table-column prop="realName" label="姓名" />
+      <el-table-column prop="sex" label="性别" />
+      <el-table-column prop="tel" label="联系方式"/>
+      <el-table-column prop="floor" label="楼层单元" />
+      <el-table-column prop="room" label="房间号" />
+      <el-table-column prop="date" label="购房日期"/>
+      <el-table-column prop="area" label="房屋面积" />
+      <el-table-column prop="type" label="房型" />
+      <el-table-column prop="property" label="房屋属性"/>
+      <el-table-column label="变更" width="">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" >详情</el-button>
+          <el-button size="mini" type="primary" >查看</el-button>
+          <el-button size="mini" type="primary" >修改</el-button>
+          <el-button size="mini" type="primary" >删除</el-button>
         </template>
       </el-table-column>
     </el-table>

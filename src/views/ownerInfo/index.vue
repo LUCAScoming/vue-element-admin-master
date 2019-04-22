@@ -19,7 +19,7 @@
     </el-form>
     <el-form>
       <el-form-item>
-        <el-button type="primary" size="medium" >添加</el-button>
+        <el-button type="primary" size="medium" @click="addInfo">添加</el-button>
       </el-form-item>
     </el-form>
     <el-table v-loading="loading" :data="tableData">
@@ -45,15 +45,15 @@
       layout="total, sizes, prev, pager, next, jumper"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"/>
-      <!--<el-dialog :title="新增" :visible.sync="addFormVisible">-->
-      <!--<add-manage ref="addForm" @close="handleFormClose()"/>-->
-      <!--</el-dialog>-->
-      <!--<el-dialog :title="编辑" :visible.sync="editFormVisible">-->
-      <!--<edit-manage ref="editForm" @close="handleFormClose()"/>-->
-      <!--</el-dialog>-->
-      <!--<el-dialog :title="数据权限" :visible.sync="dataFormVisible">-->
-      <!--<data-permission ref="dataForm" @close="handleFormClose()"/>-->
-      <!--</el-dialog>-->
+    <el-dialog :title="新增" :visible.sync="addFormVisible">
+      <add-info ref="addForm" @close="handleFormClose()"/>
+    </el-dialog>
+    <el-dialog :title="编辑" :visible.sync="editFormVisible">
+      <add-info ref="addForm" @close="handleFormClose()"/>
+    </el-dialog>
+    <!--<el-dialog :title="数据权限" :visible.sync="dataFormVisible">-->
+    <!--<data-permission ref="dataForm" @close="handleFormClose()"/>-->
+    <!--</el-dialog>-->
   </div>
 </template>
 
@@ -61,14 +61,14 @@
 import { mapGetters } from 'vuex'
 // import ManagerApi from '@/api/mathsgo/manager'
 // import Change from './components/Change'
-// import AddManage from './components/AddManager'
+import AddInfo from './components/addInfo'
 // import EditManage from './components/EditManager'
 // import DataPermission from './components/DataPermission'
 export default {
   name: 'OwnerInfo',
   components: {
     // EditManage,
-    // AddManage,
+    AddInfo
     // Change,
     // DataPermission
   },
@@ -138,18 +138,18 @@ export default {
     //   this.managerQueryVo.pageObj.currentPage = val
     //   this.queryPage()
     // },
-    // handleFormClose() {
-    //   this.addFormVisible = false
-    //   this.editFormVisible = false
-    //   this.dataFormVisible = false
-    //   this.queryPage()
-    // },
-    // addManager() {
-    //   this.addFormVisible = true
-    //   this.$nextTick(() => {
-    //     this.$refs.addForm.formClear()
-    //   })
-    // },
+    handleFormClose() {
+      this.addFormVisible = false
+      this.editFormVisible = false
+      this.dataFormVisible = false
+      // this.queryPage()
+    },
+    addInfo() {
+      this.addFormVisible = true
+      this.$nextTick(() => {
+        // this.$refs.addForm.formClear()
+      })
+    }
     // editManager(id) {
     //   this.editFormVisible = true
     //   this.$nextTick(() => {

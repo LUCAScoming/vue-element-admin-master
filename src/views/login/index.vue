@@ -2,12 +2,13 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
-        <h3 class="title">
-          {{ $t('login.title') }}
-        </h3>
+        <h3 class="title">欢迎使用物业管理系统</h3>
         <lang-select class="set-language" />
       </div>
-
+      <div style="margin: 30px">
+        <el-radio v-model="loginForm.radio" label="1">物业公司</el-radio>
+        <el-radio v-model="loginForm.radio" label="2">业主/租户登录</el-radio>
+      </div>
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -72,7 +73,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import LoginApi from '@/api/login'
+// import LoginApi from '@/api/login'
 // import { setToken, removeToken } from '@/utils/auth'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './socialsignin'
@@ -132,25 +133,25 @@ export default {
         this.passwordType = 'password'
       }
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          LoginApi.LoginByUsername(this.loginForm).then(data => {
-            console.log(this.loginForm)
-            console.log(data)
-            debugger
-            // this.$message.success('保存成功')
-            // this.$emit('close')
-          }).catch(error => {
-            console.log(error)
-            this.$message.error(error.msg)
-          })
-        } else {
-          this.$alert('数据格式不完整')
-        }
-      })
-    },
+    // handleLogin() {
+    //   this.$refs.loginForm.validate(valid => {
+    //     if (valid) {
+    //       this.loading = true
+    //       LoginApi.LoginByUsername(this.loginForm).then(data => {
+    //         console.log(this.loginForm)
+    //         console.log(data)
+    //         debugger
+    //         // this.$message.success('保存成功')
+    //         // this.$emit('close')
+    //       }).catch(error => {
+    //         console.log(error)
+    //         this.$message.error(error.msg)
+    //       })
+    //     } else {
+    //       this.$alert('数据格式不完整')
+    //     }
+    //   })
+    // },
     // debugger
     // this.$store.dispatch(LoginByUsername, this.loginForm).then(() => {
     //   console.log(this.loginForm)
@@ -177,22 +178,23 @@ export default {
     // }
     // })
     // },
-    // handleLogin() {
-    //   this.$refs.loginForm.validate(valid => {
-    //     if (valid) {
-    //       this.loading = true
-    //       this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-    //         this.loading = false
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       }).catch(() => {
-    //         this.loading = false
-    //       })
-    //     } else {
-    //       console.log('error submit!!')
-    //       return false
-    //     }
-    //   })
-    // },
+    handleLogin() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+            debugger
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
     afterQRScan() {
       // const hash = window.location.hash.slice(1)
       // const hashObj = getQueryObject(hash)
