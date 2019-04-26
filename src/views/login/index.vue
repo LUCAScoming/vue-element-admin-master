@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
-        <h3 class="title">欢迎使用物业管理系统</h3>
+        <h3 class="title">欢迎使用小区物业管理系统</h3>
         <lang-select class="set-language" />
       </div>
       <div style="margin: 30px">
@@ -325,7 +325,7 @@ $light_gray:#eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
-  }
+  }alpha/user/login
   .thirdparty-button {
     position: absolute;
     right: 0;
